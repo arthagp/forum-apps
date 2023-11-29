@@ -7,9 +7,8 @@ const Navigation = () => {
       <h1>Forum Apps <span className='_dot'>.</span></h1>
       <nav>
         <ul>
-          <li><Link to={'/'}>Home</Link></li>
-          <li><Link>Thread</Link></li>
-          <li><Link>Leader Board</Link></li>
+          <li><Link to={'/'}>Thread</Link></li>
+          <li><Link to={'/leaderboards'}>Leader Board</Link></li>
         </ul>
         <Link className='btn-login'>Login</Link>
       </nav>

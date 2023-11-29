@@ -1,26 +1,18 @@
 // terhdapat category title, thread title, body thread, footer thread
 
 import React from 'react'
+import HeaderThread from './HeaderThread'
+import BodyThread from './BodyThread'
+import FooterThread from './FooterThread'
 
 const ThreadItem = () => {
   return (
     <div className='thread-item'>
-        <header className='thread-item__header'>
-            <span>#redux</span>
-            <h3>Bagaiamana menurutmu redux itu bekerja??</h3>
-        </header>
-        {/* body */}
-        <div className='thread-item__body'>
-            Coba dong ceritakan pengalaman kamu bagaiaman redux itu bekerja, karena menurutku redux ini cukup sulit..
-        </div>
-        {/* footer */}
-        <footer className='thread-item__footer'>
-            <button>Up Vote</button>
-            <button>Down Vote</button>
-            <p>Total Comments</p>
-            <p>50 hari lalu</p>
-            <p>Item Owner</p>
-        </footer>
+      <HeaderThread />
+      {/* body */}
+      <BodyThread />
+      {/* footer */}
+      <FooterThread />
     </div>
   )
 }
