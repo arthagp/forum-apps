@@ -16,9 +16,10 @@
         "react",
         "react-hooks"
     ],
-    "resolve": {
-        "extensions": [".js", ".jsx", "css"]
-    },
     "rules": {
+        "max-len": "off",
+        "import/no-extraneous-dependencies": "off",
+        "react/no-unescaped-entities": "off",
+        "import/extensions": "off"
     }
 }

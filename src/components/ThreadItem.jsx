@@ -1,20 +1,20 @@
 // terhdapat category title, thread title, body thread, footer thread
 
-import React from 'react'
-import HeaderThread from './HeaderThread'
-import BodyThread from './BodyThread'
-import FooterThread from './FooterThread'
+import React from 'react';
+import HeaderThread from './HeaderThread';
+import BodyThread from './BodyThread';
+import FooterThread from './FooterThread';
 
-const ThreadItem = () => {
+function ThreadItem() {
   return (
-    <div className='thread-item'>
+    <div className="thread-item">
       <HeaderThread />
       {/* body */}
       <BodyThread />
       {/* footer */}
       <FooterThread />
     </div>
-  )
+  );
 }
 
-export default ThreadItem
+export default ThreadItem;

@@ -1,10 +1,10 @@
-import React from 'react'
-import ListThread from '../components/ListThread'
+import React from 'react';
+import ListThread from '../components/ListThread';
 
-const HomePage = () => {
+function HomePage() {
   return (
-    <section className='thread-container'>
-      <div className='threads'>
+    <section className="thread-container">
+      <div className="threads">
         <header>
           <h2>Kategoru Popular</h2>
           <div>
@@ -17,7 +17,7 @@ const HomePage = () => {
         <ListThread />
       </div>
     </section>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;
