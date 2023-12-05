@@ -1,10 +1,14 @@
 import React from 'react';
 import ThreadItem from './ThreadItem';
 
-function ListThread() {
+function ListThread({ threads }) {
+  console.log(threads, 'awdawdadawd')
   return (
     <div className="list-threads">
-      <ThreadItem />
+      {threads.map((thread) => (
+        <ThreadItem key={thread.id} {...thread} />
+      )
+      )}
     </div>
   );
 }

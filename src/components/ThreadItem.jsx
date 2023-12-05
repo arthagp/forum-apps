@@ -5,14 +5,14 @@ import HeaderThread from './HeaderThread';
 import BodyThread from './BodyThread';
 import FooterThread from './FooterThread';
 
-function ThreadItem() {
+function ThreadItem({ title, category, body, upVotesBy, downVotesBy, createdAt, totalComments, user }) {
   return (
     <div className="thread-item">
-      <HeaderThread />
+      <HeaderThread title={title} category={category} />
       {/* body */}
-      <BodyThread />
+      <BodyThread body={body} />
       {/* footer */}
-      <FooterThread />
+      <FooterThread upVotesBy={upVotesBy} downVotesBy={downVotesBy} createdAt={createdAt} totalComments={totalComments} user={user} />
     </div>
   );
 }
