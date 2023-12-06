@@ -30,18 +30,17 @@ const api = (() => {
     });
 
     const responseJson = await response.json();
-    const { status, message } = responseJson;
+    const { status, message } = responseJson; // mengambil status dan message dari responseJson
 
     if (status !== 'success') {
       throw new Error(message);
     }
 
-    const { data: { user } } = responseJson;
+    const { data: { user } } = responseJson; // mengambil data : {user} dari responseJson
 
     return user;
   }
-  // masuk kebody kamu bisa ubah menjadi stringify
-  async function login({ email, password}) {
+  async function login({ email, password }) {
     const response = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
       headers: {
@@ -112,9 +111,31 @@ const api = (() => {
     return threads
   }
 
+  async function threadDetail(threadId) {
+    const response = await fetch(`${BASE_URL}/threads/${threadId}`)
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message)
+    }
+
+    const { data: { detailThread } } = responseJson
+
+    return detailThread
+  }
+  // /threads/<threadId>/comments
+  async function createComment(threadId) {
+    const response = await fetch(`${BASE_URL}/threads/${threadId}/comments`, {
+      method: 'POST',
+      
+    })
+  }
 
   return {
-    putAccesToken, getAccessToken, register, login, getOwnProfile, getAllUsers, allThreads
+    putAccesToken, getAccessToken, register, login, getOwnProfile, getAllUsers, allThreads, threadDetail
   };
 })();
 

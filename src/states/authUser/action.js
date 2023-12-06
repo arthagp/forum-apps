@@ -5,7 +5,7 @@ const ActionType = {
     UNSET_AUTH_USER: 'UNSET_AUTH_USER',
 }
 
-function setAuthUserActionCreator(authUser){
+function setAuthUserActionCreator(authUser) {
     return {
         type: ActionType.SET_AUTH_USER,
         payload: {
@@ -14,8 +14,8 @@ function setAuthUserActionCreator(authUser){
     }
 }
 
-function unsetAuthUserActionCreator(){
-    return{
+function unsetAuthUserActionCreator() {
+    return {
         type: ActionType.UNSET_AUTH_USER,
         payload: {
             authUser: null
@@ -23,10 +23,10 @@ function unsetAuthUserActionCreator(){
     }
 }
 
-function asyncSetAuthUser({email, password}){
+function asyncSetAuthUser({ email, password }) {
     return async (dispatch) => {
         try {
-            const token = await api.login({email, password});
+            const token = await api.login({ email, password });
             api.putAccesToken(token);
             const authUser = await api.getOwnProfile()
 
@@ -39,7 +39,8 @@ function asyncSetAuthUser({email, password}){
     }
 }
 
-function asyncUnsetAuthUser(){
+
+function asyncUnsetAuthUser() {
     return (dispatch) => {
         dispatch(unsetAuthUserActionCreator());
         api.putAccesToken('')
@@ -49,5 +50,5 @@ function asyncUnsetAuthUser(){
 export {
     ActionType,
     asyncSetAuthUser,
-    asyncUnsetAuthUser
+    asyncUnsetAuthUser,
 }

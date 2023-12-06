@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ListThread from '../components/ListThread';
 import { useDispatch, useSelector } from 'react-redux'
 import { asyncPopulateUsersAndThreads } from '../states/shared/action';
-import api from '../utils/api';
 
 function HomePage() {
   const {
     threads = [],
     users = [],
-    authUser = null
   } = useSelector((states) => states)
 
 
@@ -21,12 +19,9 @@ function HomePage() {
   const threadList = threads.map((thread) => ({
     ...thread,
     user: users.find((user) => user.id === thread.ownerId),
-    authUser: authUser
   }))
 
-  console.log(threadList[0], 'LIST 0')
-  
-  // console.log(authUser)
+  // console.log(threadList, 'HOMEPAGE')
 
   return (
     <section className="thread-container">

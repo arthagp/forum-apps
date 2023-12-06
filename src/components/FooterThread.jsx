@@ -6,16 +6,18 @@ import { postedAt } from '../utils';
 function FooterThread({ upVotesBy, downVotesBy, totalComments, createdAt, user }) {
   return (
     <footer className="thread-item__footer">
-      <button type="button">
-        <AiOutlineLike />
-        {' '}
-        <span>{upVotesBy.length}</span>
-      </button>
-      <button type="button">
-        <AiOutlineDislike />
-        {' '}
-        <span>{downVotesBy.length}</span>
-      </button>
+      <div className='vote-buttons'>
+        <button type="button" className='vote-button'>
+          <AiOutlineLike />
+          {' '}
+          <span>{upVotesBy.length}</span>
+        </button>
+        <button type="button" className='vote-button'>
+          <AiOutlineDislike />
+          {' '}
+          <span>{downVotesBy.length}</span>
+        </button>
+      </div>
       <p>
         <FaRegComments />
         {' '}
@@ -25,7 +27,7 @@ function FooterThread({ upVotesBy, downVotesBy, totalComments, createdAt, user }
       </p>
       <p>{postedAt(createdAt)}</p>
       <p>
-        Dibut oleh
+        Dibuat oleh
         {' '}
         <strong>{user.name}</strong>
       </p>

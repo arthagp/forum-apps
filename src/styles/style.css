@@ -140,6 +140,19 @@ nav {
   background-color: #f0f0f0;
 }
 
+.thread-item__body {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.thread-item__body-inner {
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .thread-item__footer {
   display: flex;
   gap: 10px;
@@ -164,15 +177,14 @@ nav {
   font-size: 15px;
 }
 
-.list-threads {
-  padding-bottom: 25px;
-  border-bottom: 1px solid rgb(152, 151, 151);
-}
+/* Tambahan CSS untuk ThreadBodyDetail */
 
 .thread-item {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 15px 0px;
+  border-bottom: 1px solid rgb(152, 151, 151);
 }
 
 .thread-item__header {
@@ -188,14 +200,50 @@ nav {
   border-radius: 5px;
 }
 
-.thread-item__header a {
-  transition: color 0.3s ease;
-  text-decoration: none;
+.thread-item__footer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.thread-item__header a:hover {
-  text-decoration: underline;
+.vote-buttons {
+  display: flex;
+  gap: 15px;
 }
+
+.vote-txt {
+  padding-left: 4px;
+}
+
+.vote-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.vote-button:hover {
+  color: var(--dark-blue);
+}
+
+.thread-item__footer p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.avatar {
+  width: 23px;
+  height: 23px;
+  display: flex;
+  border-radius: 100%;
+  margin: auto 0px;
+}
+
+/* End of Tambahan CSS untuk ThreadBodyDetail */
+
 /*  */
 
 /* LeaderBoard */
@@ -206,7 +254,7 @@ nav {
   gap: 15px;
 }
 
-.leaderBoard-list header p{
+.leaderBoard-list header p {
   font-weight: bold;
 }
 
@@ -215,8 +263,76 @@ nav {
   min-width: 700px;
 }
 
-.leaderBoard-list header, .leaderBoard-item {
+.leaderBoard-list header,
+.leaderBoard-item {
   display: flex;
   justify-content: space-between;
 }
+
+.available {
+  margin: 10px 0px;
+}
+
+/*  */
+
+/* Comments */
+/* CSS untuk InputComment */
+
+.comment-input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  min-width: 750px;
+  margin: 0px auto;
+}
+
+.comment-input__field {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  min-height: 50px;
+  max-height: 150px;
+  overflow-y: auto;
+  outline: none;
+  border-radius: 5px;
+}
+
+.comment-input__field:focus {
+  border-color: #007bff;
+}
+
+.comment-input button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-input button:hover {
+  background-color: #0056b3; /* Warna saat tombol dihover */
+}
+
+/* comment list */
+.comment-list {
+  min-width: 750px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.comment-list header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+._profile {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+/* End of CSS untuk InputComment */
+
 /*  */
