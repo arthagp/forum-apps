@@ -15,7 +15,7 @@ const DetailThreadPage = () => {
 
     // // Check if threadDetail is still loading or null
     if (!threadDetail) {
-        return <p>Loading...</p>; // or any loading indicator you prefer
+        return null; // or any loading indicator you prefer
     }
 
     console.log(threadDetail);
@@ -28,7 +28,7 @@ const DetailThreadPage = () => {
                 downVotesBy={threadDetail.downVotesBy?.length || 0}
                 avatar={threadDetail.owner?.avatar || null}
                 name={threadDetail.owner?.name || null}
-                comments={threadDetail.comments} // Pass comments to ThreadDetailItem
+                comments={threadDetail.comments} 
             />
         </section>
     );

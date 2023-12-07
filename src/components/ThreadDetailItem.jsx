@@ -7,14 +7,14 @@ import { Link } from 'react-router-dom';
 
 const ThreadDetailItem = ({ category, title, body, avatar, createdAt, upVotesBy, downVotesBy, name, comments }) => {
   // Menggunakan useSelector untuk mendapatkan state dari slice 'authUser'
-  const authUser = useSelector((state) => state.authUser);
+  const { authUser } = useSelector((states) => states)
 
-  console.log(authUser);
+  console.log(authUser, 'authUser....');
   return (
     <div className="threads">
       <ThreadBodyDetail category={category} title={title} body={body} name={name} avatar={avatar} createdAt={createdAt} upVotesBy={upVotesBy} downVotesBy={downVotesBy} />
       <p>Beri Komentar</p>
-      {!authUser.isAuthenticated ? (
+      {authUser == null ? (
         <p>
           <Link to={'/login'}>Login</Link> untuk memberi komentar
         </p>

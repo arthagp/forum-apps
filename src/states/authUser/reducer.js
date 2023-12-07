@@ -1,24 +1,13 @@
-// authReducer.js
-
 import { ActionType } from './action';
-
-const authReducer = (state = { authUser: null, isAuthenticated: false }, action) => {
+function authUserReducer(authUser = null, action = {}) {
     switch (action.type) {
         case ActionType.SET_AUTH_USER:
-            return {
-                ...state,
-                authUser: action.payload.authUser,
-                isAuthenticated: true,
-            };
+            return action.payload.authUser
         case ActionType.UNSET_AUTH_USER:
-            return {
-                ...state,
-                authUser: null,
-                isAuthenticated: false,
-            };
-        default:
-            return state;
+            return null
+        default: // default merupakan jika tidak ada case yang cocok
+            return authUser
     }
-};
+}
 
-export default authReducer;
+export default authUserReducer

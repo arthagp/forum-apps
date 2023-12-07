@@ -10,7 +10,7 @@ function InputLogin({ login }) {
     <form className="login-input">
       <input type="email" placeholder="Email" value={email} onChange={onEmailChange} />
       <input type="password" placeholder="Password" value={password} onChange={onPasswordChange} />
-      <button type="button" onClick={() => { login({ email, password }) }}>Login</button>
+      <button type="button" onClick={() => login({ email, password })}>Login</button>
     </form>
   );
 }

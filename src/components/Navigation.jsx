@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
-function Navigation() {
+function Navigation({ authUser, logOut }) {
+  const navigate = useNavigate()
+
+  const login = () => {
+    navigate('/')
+  }
+
   return (
     <div className="navigation">
       <h1>
@@ -13,7 +20,15 @@ function Navigation() {
           <li><Link to="/">Thread</Link></li>
           <li><Link to="/leaderboards">Leader Board</Link></li>
         </ul>
-        <Link to="/login" className="btn-login">Login</Link>
+        {authUser !== null ? (
+          <button className="btn-login" onClick={logOut}>
+            logout
+          </button>) :
+          (<button className="btn-login" onClick={login}>
+            login
+          </button>)
+        }
+
       </nav>
     </div>
   );
