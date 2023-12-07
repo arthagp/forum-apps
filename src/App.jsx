@@ -10,6 +10,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { asyncPreloadProcess } from './states/isPreload/action';
 import { asyncUnsetAuthUser } from './states/authUser/action';
 import { useNavigate } from 'react-router-dom'
+import Loading from './components/Loading';
+import AddThreadPage from './pages/AddThreadPage';
+
 
 function App() {
   const {
@@ -36,20 +39,24 @@ function App() {
   }
 
   return (
-    <div className="app-container">
-      <header>
-        <Navigation authUser={authUser} logOut={onLogOut} />
-      </header>
-      <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/leaderboards" element={<LeaderBoadPage />} />
-          <Route path='/threads/:id' element={<DetailThreadPage />} />
-        </Routes>
-      </main>
-    </div>
+    <>
+      <Loading />
+      <div className="app-container">
+        <header>
+          <Navigation authUser={authUser} logOut={onLogOut} />
+        </header>
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/leaderboards" element={<LeaderBoadPage />} />
+            <Route path='/threads/:id' element={<DetailThreadPage />} />
+            <Route path='/add' element={<AddThreadPage />} />
+          </Routes>
+        </main>
+      </div>
+    </>
   );
 }
 

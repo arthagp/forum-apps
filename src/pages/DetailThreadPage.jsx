@@ -3,6 +3,7 @@ import ThreadDetailItem from '../components/threadDetailItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { asyncReceiveThreadDetail } from '../states/threadDetail/action';
 import { useParams } from 'react-router-dom';
+import { asyncCreateComment } from '../states/threadDetail/action';
 
 const DetailThreadPage = () => {
     const { id } = useParams();
@@ -13,12 +14,13 @@ const DetailThreadPage = () => {
         dispatch(asyncReceiveThreadDetail(id));
     }, [id, dispatch]);
 
-    // // Check if threadDetail is still loading or null
-    if (!threadDetail) {
-        return null; // or any loading indicator you prefer
+    const onComment = (content) => {
+        dispatch(asyncCreateComment({ threadId: id, content }))
     }
 
-    console.log(threadDetail);
+    if (!threadDetail) {
+        return null;
+    }
 
     return (
         <section className="thread-container">
@@ -28,7 +30,8 @@ const DetailThreadPage = () => {
                 downVotesBy={threadDetail.downVotesBy?.length || 0}
                 avatar={threadDetail.owner?.avatar || null}
                 name={threadDetail.owner?.name || null}
-                comments={threadDetail.comments} 
+                comments={threadDetail.comments}
+                comment={onComment}
             />
         </section>
     );

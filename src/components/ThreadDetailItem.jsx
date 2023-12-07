@@ -5,11 +5,9 @@ import CommentList from './CommentList';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const ThreadDetailItem = ({ category, title, body, avatar, createdAt, upVotesBy, downVotesBy, name, comments }) => {
-  // Menggunakan useSelector untuk mendapatkan state dari slice 'authUser'
+const ThreadDetailItem = ({ category, title, body, avatar, createdAt, upVotesBy, downVotesBy, name, comments, comment }) => {
   const { authUser } = useSelector((states) => states)
 
-  console.log(authUser, 'authUser....');
   return (
     <div className="threads">
       <ThreadBodyDetail category={category} title={title} body={body} name={name} avatar={avatar} createdAt={createdAt} upVotesBy={upVotesBy} downVotesBy={downVotesBy} />
@@ -19,7 +17,7 @@ const ThreadDetailItem = ({ category, title, body, avatar, createdAt, upVotesBy,
           <Link to={'/login'}>Login</Link> untuk memberi komentar
         </p>
       ) : (
-        <InputComment />
+        <InputComment comment={comment} />
       )}
       <p>Komentar {`(${comments.length || 0})`}</p>
       {comments.map((comment) => (
