@@ -9,9 +9,7 @@ function ThreadItem({ id, title, category, body, upVotesBy, downVotesBy, created
   return (
     <div className="thread-item">
       <HeaderThread id={id} title={title} category={category} />
-      {/* body */}
       <BodyThread body={body} />
-      {/* footer */}
       <FooterThread upVotesBy={upVotesBy} downVotesBy={downVotesBy} createdAt={createdAt} totalComments={totalComments} user={user} />
     </div>
   );

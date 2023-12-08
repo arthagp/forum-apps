@@ -1,12 +1,13 @@
 import React from 'react';
 
-function LeaderBoardItem() {
+function LeaderBoardItem({ score, user }) {
   return (
     <div className="leaderBoard-item">
       <div className="leaderBoardItem-Info">
-        <p>Artha Gusfi Putra</p>
+        <img className='avatar' src={user.avatar} alt={user} />
+        <p>{user.name}</p>
       </div>
-      <p>25</p>
+      <p>{score}</p>
     </div>
   );
 }

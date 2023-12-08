@@ -177,8 +177,24 @@ const api = (() => {
     return thread
   }
 
+  async function leaderBoards() {
+    const response = await fetch(`${BASE_URL}/leaderboards`)
+
+    const responseJson = await response.json()
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message)
+    }
+
+    const { data: { leaderboards } } = responseJson
+
+    return leaderboards
+  }
+
   return {
-    putAccesToken, getAccessToken, register, login, getOwnProfile, getAllUsers, allThreads, threadDetail, createComment, createThread
+    putAccesToken, getAccessToken, register, login, getOwnProfile, getAllUsers, allThreads, threadDetail, createComment, createThread, leaderBoards
   };
 })();
 

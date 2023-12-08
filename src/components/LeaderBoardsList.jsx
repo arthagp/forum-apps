@@ -1,15 +1,9 @@
 import React from 'react';
 import LeaderBoardItem from './LeaderBoardItem';
 
-function LeaderBoardsList() {
+function LeaderBoardsList({ user, score }) {
   return (
-    <div className="leaderBoard-list">
-      <header>
-        <p>Pengguna</p>
-        <p>Skor</p>
-      </header>
-      <LeaderBoardItem />
-    </div>
+    <LeaderBoardItem user={user} score={score} />
   );
 }
 

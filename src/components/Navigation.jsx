@@ -6,7 +6,7 @@ function Navigation({ authUser, logOut }) {
   const navigate = useNavigate()
 
   const login = () => {
-    navigate('/')
+    navigate('/login')
   }
 
   return (

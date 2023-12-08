@@ -7,24 +7,11 @@ function threadDetailReducer(threadDetail = null, action = {}) {
         case ActionType.CLEAR_THREAD_DETAIL:
             return null;
         case ActionType.ADD_COMMENT:
-            console.log('Reducer - ThreadDetail Before Update:', threadDetail);
-
-            // Jika threadDetail masih null, buat objek thread baru dengan komentar
-            if (!threadDetail) {
-                return {
-                    ...action.payload.comment,
-                    comments: [action.payload.comment]
-                };
-            }
-
-            // Jika threadDetail sudah ada, tambahkan komentar ke array comments
-            const updatedThreadDetail = {
+            return {
                 ...threadDetail,
                 comments: [action.payload.comment, ...(threadDetail.comments || [])]
             };
 
-            console.log('Reducer - ThreadDetail After Update:', updatedThreadDetail);
-            return updatedThreadDetail;
         default:
             return threadDetail
     }

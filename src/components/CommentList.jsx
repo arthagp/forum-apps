@@ -2,13 +2,13 @@ import React from 'react';
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
 import { postedAt } from '../utils';
 
-const CommentList = ({ name, avatar, createdAt, content, upVotesBy, downVotesBy }) => {
+const CommentList = ({ owner, createdAt, content, upVotesBy, downVotesBy }) => {
     return (
         <div className='comment-list'>
             <header>
                 <div className='_profile'>
-                    <img className='avatar' src={avatar} alt={avatar} />
-                    <h2>{name}</h2>
+                    <img className='avatar' src={owner.avatar} alt={owner} />
+                    <h2>{owner.name}</h2>
                 </div>
                 <p>{postedAt(createdAt)}</p>
             </header>

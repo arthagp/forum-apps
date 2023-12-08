@@ -2,7 +2,7 @@ import React from 'react';
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
 import { postedAt } from '../utils';
 
-const ThreadBodyDetail = ({ category, title, body, upVotesBy, downVotesBy, avatar, createdAt, name }) => {
+const ThreadBodyDetail = ({ category, title, body, upVotesBy, downVotesBy, owner, createdAt }) => {
   return (
     <div className='thread-item'>
       <header className="thread-item__header">
@@ -17,19 +17,19 @@ const ThreadBodyDetail = ({ category, title, body, upVotesBy, downVotesBy, avata
           <button type="button" className="vote-button">
             <AiOutlineLike />
             {' '}
-            <span>{upVotesBy}</span>
+            <span>{upVotesBy.length}</span>
           </button>
           <button type="button" className="vote-button">
             <AiOutlineDislike />
             {' '}
-            <span>{downVotesBy}</span>
+            <span>{downVotesBy.length}</span>
           </button>
         </div>
         <p>
-          <span><img className='avatar' src={avatar} alt={avatar} /></span>
+          <span><img className='avatar' src={owner.avatar} alt={owner} /></span>
           Dibuat oleh
           {' '}
-          <strong>{name}</strong>
+          <strong>{owner.name}</strong>
         </p>
         <p>{postedAt(createdAt)}</p>
       </footer>

@@ -37,7 +37,6 @@ function asyncCreateComment({ threadId, content }) {
     return async (dispatch) => {
         try {
             const comment = await api.createComment({ threadId, content })
-            console.log(comment, 'comment')
             dispatch(addCommentActionCreator(comment))
         } catch (error) {
             alert(error.message)

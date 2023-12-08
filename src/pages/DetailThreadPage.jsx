@@ -24,15 +24,7 @@ const DetailThreadPage = () => {
 
     return (
         <section className="thread-container">
-            <ThreadDetailItem
-                {...threadDetail}
-                upVotesBy={threadDetail.upVotesBy?.length || 0}
-                downVotesBy={threadDetail.downVotesBy?.length || 0}
-                avatar={threadDetail.owner?.avatar || null}
-                name={threadDetail.owner?.name || null}
-                comments={threadDetail.comments}
-                comment={onComment}
-            />
+            <ThreadDetailItem {...threadDetail} comment={onComment} />
         </section>
     );
 };
