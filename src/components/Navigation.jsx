@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function Navigation({ authUser, logOut }) {
+  // console.log(authUser)
   const navigate = useNavigate();
 
   const login = () => {
@@ -36,8 +37,12 @@ function Navigation({ authUser, logOut }) {
   );
 }
 
+Navigation.defaultProps = {
+  authUser: null,
+};
+
 Navigation.propTypes = {
-  authUser: PropTypes.objectOf().isRequired,
+  authUser: PropTypes.objectOf(PropTypes.string),
   logOut: PropTypes.func.isRequired,
 };
 

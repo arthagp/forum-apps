@@ -17,20 +17,30 @@ function ThreadItem({
     </div>
   );
 }
+ThreadItem.defaultProps = {
+  // eslint-disable-next-line react/default-props-match-prop-types
+  authUser: undefined,
+};
 
-ThreadItem.propTypes = {
+const threadShape = {
   id: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  upVotesBy: PropTypes.arrayOf().isRequired,
-  downVotesBy: PropTypes.arrayOf().isRequired,
-  createdAt: PropTypes.string.isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   totalComments: PropTypes.number.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  authUser: PropTypes.string,
+  user: PropTypes.objectOf(PropTypes.string).isRequired,
+};
+
+ThreadItem.propTypes = {
+  ...threadShape,
   like: PropTypes.func.isRequired,
   unLike: PropTypes.func.isRequired,
-  authUser: PropTypes.string.isRequired,
-  user: PropTypes.objectOf().isRequired,
 };
+
+export { threadShape };
 
 export default ThreadItem;

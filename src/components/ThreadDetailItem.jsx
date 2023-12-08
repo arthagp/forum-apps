@@ -10,6 +10,7 @@ function ThreadDetailItem({
   category, title, body, createdAt, upVotesBy, downVotesBy, owner, comments, toComment,
 }) {
   const { authUser } = useSelector((states) => states);
+  // console.log(upVotesBy)
 
   return (
     <div className="threads">
@@ -47,8 +48,8 @@ ThreadDetailItem.propTypes = {
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  upVotesBy: PropTypes.arrayOf().isRequired,
-  downVotesBy: PropTypes.arrayOf().isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   owner: PropTypes.shape(ownerShape).isRequired,
   createdAt: PropTypes.string.isRequired,
   comments: PropTypes.objectOf().isRequired,

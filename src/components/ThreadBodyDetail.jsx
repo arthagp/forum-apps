@@ -52,8 +52,8 @@ ThreadBodyDetail.propTypes = {
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  upVotesBy: PropTypes.arrayOf().isRequired,
-  downVotesBy: PropTypes.arrayOf().isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   owner: PropTypes.shape(ownerShape).isRequired,
   createdAt: PropTypes.string.isRequired,
 };

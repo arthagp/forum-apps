@@ -65,6 +65,10 @@ const userShape = {
   name: PropTypes.string.isRequired,
 };
 
+FooterThread.defaultProps = {
+  authUser: undefined,
+};
+
 FooterThread.propTypes = {
   id: PropTypes.string.isRequired,
   user: PropTypes.shape(userShape).isRequired,
@@ -74,7 +78,7 @@ FooterThread.propTypes = {
   createdAt: PropTypes.string.isRequired,
   like: PropTypes.func.isRequired,
   unLike: PropTypes.func.isRequired,
-  authUser: PropTypes.string.isRequired,
+  authUser: PropTypes.string,
 };
 
 export default FooterThread;

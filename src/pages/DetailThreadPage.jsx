@@ -23,7 +23,7 @@ function DetailThreadPage() {
 
   return (
     <section className="thread-container">
-      <ThreadDetailItem {...threadDetail} comment={onComment} />
+      <ThreadDetailItem {...threadDetail} toComment={onComment} />
     </section>
   );
 }

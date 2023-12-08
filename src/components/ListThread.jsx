@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ThreadItem from './ThreadItem';
+import ThreadItem, { threadShape } from './ThreadItem';
 
 function ListThread({ threads, like, unLike }) {
   return (
@@ -14,7 +14,7 @@ function ListThread({ threads, like, unLike }) {
 }
 
 ListThread.propTypes = {
-  threads: PropTypes.arrayOf().isRequired,
+  threads: PropTypes.arrayOf(PropTypes.shape(threadShape)).isRequired,
   like: PropTypes.func.isRequired,
   unLike: PropTypes.func.isRequired,
 };

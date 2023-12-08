@@ -11,7 +11,7 @@ function HomePage() {
   const {
     threads = [],
     users = [],
-    authUser,
+    authUser = null,
   } = useSelector((states) => states);
 
   const dispatch = useDispatch();
