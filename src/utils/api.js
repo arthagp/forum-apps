@@ -193,8 +193,62 @@ const api = (() => {
     return leaderboards
   }
 
+  async function upVoteThread(threadId) {
+    const response = await fetchWithUrl(`${BASE_URL}/threads/${threadId}/up-vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const responseJson = await response.json()
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message)
+    }
+
+    const { data: { vote } } = responseJson
+
+    return vote
+  }
+
+  async function downVoteThread(threadId) {
+    const response = await fetchWithUrl(`${BASE_URL}/threads/${threadId}/down-vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const responseJson = await response.json()
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message)
+    }
+
+    const { data: { vote } } = responseJson
+
+    return vote
+  }
+
   return {
-    putAccesToken, getAccessToken, register, login, getOwnProfile, getAllUsers, allThreads, threadDetail, createComment, createThread, leaderBoards
+    putAccesToken,
+    getAccessToken,
+    register,
+    login,
+    getOwnProfile,
+    getAllUsers,
+    allThreads,
+    threadDetail,
+    createComment,
+    createThread,
+    leaderBoards,
+    upVoteThread,
+    downVoteThread
   };
 })();
 

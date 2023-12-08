@@ -1,17 +1,31 @@
 import React from 'react';
-import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
+import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike } from 'react-icons/ai';
 import { FaRegComments } from 'react-icons/fa';
 import { postedAt } from '../utils';
 
-function FooterThread({ upVotesBy, downVotesBy, totalComments, createdAt, user }) {
+function FooterThread({ id, upVotesBy, downVotesBy, totalComments, createdAt, user, like, authUser }) {
+  // console.log(authUser, id)
+  const isThreadLike = upVotesBy.includes(authUser)
+  // console.log(like, 'likeee')
+
+  // id : merupakan threadId 
+  const onLikeClick = (event) => {
+    event.stopPropagation();
+    like(id)
+  }
+  // <AiFillLike /> <AiFillDislike />
   return (
     <footer className="thread-item__footer">
       <div className='vote-buttons'>
-        <button type="button" className='vote-button'>
-          <AiOutlineLike />
-          {' '}
-          <span>{upVotesBy.length}</span>
-        </button>
+        {
+          like && (
+            <button type="button" className='vote-button' onClick={onLikeClick}>
+              {isThreadLike ? (<AiFillLike />) : (<AiOutlineLike />)}
+              {' '}
+              <span>{upVotesBy.length}</span>
+            </button>
+          )
+        }
         <button type="button" className='vote-button'>
           <AiOutlineDislike />
           {' '}

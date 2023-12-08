@@ -8,6 +8,8 @@ function asyncPopulateUsersAndThreads() {
         try {
             const users = await api.getAllUsers();
             const threads = await api.allThreads()
+            // console.log(threads.upVotesBy, 'threadss')
+            threads.map(thread => console.log(thread.upVotesBy))
 
             dispatch(receiveUsersActionCreator(users))
             dispatch(receiveThreadsActionCreator(threads))

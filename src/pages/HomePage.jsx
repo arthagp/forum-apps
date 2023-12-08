@@ -5,6 +5,8 @@ import { asyncPopulateUsersAndThreads } from '../states/shared/action';
 import { IoIosAddCircle } from "react-icons/io";
 import { useNavigate } from 'react-router-dom'
 import Category from '../components/Category';
+import { asyncLikeThread } from '../states/threads/action'
+import api from '../utils/api';
 
 function HomePage() {
   const {
@@ -25,11 +27,17 @@ function HomePage() {
     navigate('/add')
   }
 
+  const onLike = (id) => {
+    dispatch(asyncLikeThread(id))
+  }
+
   const threadList = threads.map((thread) => ({
     ...thread,
     user: users.find((user) => user.id === thread.ownerId),
+    authUser: authUser.id
   }))
 
+  console.log(threadList, 'list')
   // membuat agar jika category di klik maka terselect dan berubah warna menjadi dark blue untuk background dan color berubah white
   return (
     <section className="thread-container">
@@ -44,7 +52,7 @@ function HomePage() {
             }
           </div>
         </header>
-        <ListThread threads={threadList} />
+        <ListThread threads={threadList} like={onLike} />
       </div>
       <button className='add-thread' onClick={linkAddThread}>
         {authUser !== null ? (

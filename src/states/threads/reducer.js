@@ -3,25 +3,22 @@ import { ActionType } from "./action";
 function threadsReducer(threads = [], action = {}) {
     switch (action.type) {
         case ActionType.RECEIVE_THREADS:
+            console.log('ACTION RECEIVE:', threads)
             return action.payload.threads;
         case ActionType.ADD_THREAD:
             return [action.payload.thread, ...threads]
-        // case ActionType.ADD_COMMENT:
-        //     return 
-        //     // console.log('Reducer - Threads Before Update:', threads);
-        //     // console.log('Reducer - ADD_COMMENT action:', action);
-        //     // const updatedThreads = threads.map(thread => {
-        //     //     if (thread.id === action.payload.comment.threadId) {
-        //     //         return {
-        //     //             ...thread,
-        //     //             comments: [...thread.comments, action.payload.comment]
-        //     //         };
-        //     //     }
-        //     //     return thread;
-        //     // });
-        //     // console.log('Reducer - Updated Threads:', updatedThreads);
-        //     // return updatedThreads.length > 0 ? updatedThreads : threads;
-
+        case ActionType.LIKE_THREAD:
+            return threads.map((thread) => {
+                if (thread.id === action.payload.threadId) {
+                    return {
+                        ...thread,
+                        upVotesBy: thread.upVotesBy.includes(action.payload.id) 
+                        ? thread.upVotesBy.filter((id) => id !== action.payload.userId)
+                        : thread.upVotesBy.concat([action.payload.userId])
+                    }
+                }
+                return thread
+            })
         default:
             return threads
     }

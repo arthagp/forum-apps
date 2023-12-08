@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
+import useInput from '../hooks/useInput'
 
 const InputComment = ({ comment }) => {
-    const [content, setContent] = useState('');
+    const [content, onContentChange, setContent] = useInput('');
 
     const toComment = () => {
         if (content.trim()) {
             comment(content);
             setContent('');
         }
-    };
-
-    const handleChange = (event) => {
-        setContent(event.target.value);
     };
 
     const handleSubmit = (event) => {
@@ -26,7 +23,7 @@ const InputComment = ({ comment }) => {
                 className="input__field"
                 rows="7"
                 value={content}
-                onChange={handleChange}
+                onChange={onContentChange}
             />
             <button type="button" onClick={toComment}>
                 Kirim
