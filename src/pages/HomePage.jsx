@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoIosAddCircle } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
-import { asyncPopulateUsersAndThreads } from '../states/shared/action';
+import asyncPopulateUsersAndThreads from '../states/shared/action';
 import ListThread from '../components/ListThread';
 import Category from '../components/Category';
 import { asyncLikeThread, asyncUnLikeThread } from '../states/threads/action';
