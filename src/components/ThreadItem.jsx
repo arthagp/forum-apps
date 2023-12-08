@@ -1,5 +1,3 @@
-// terhdapat category title, thread title, body thread, footer thread
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import HeaderThread from './HeaderThread';

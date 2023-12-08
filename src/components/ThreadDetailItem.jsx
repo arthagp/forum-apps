@@ -10,7 +10,6 @@ function ThreadDetailItem({
   category, title, body, createdAt, upVotesBy, downVotesBy, owner, comments, toComment,
 }) {
   const { authUser } = useSelector((states) => states);
-  // console.log(upVotesBy)
 
   return (
     <div className="threads">

@@ -19,15 +19,13 @@ function App() {
   } = useSelector((states) => states);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // @TODO: get dispatch function from store
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    // @TODO: dispatch async action to preload app
     dispatch(asyncPreloadProcess());
   }, [dispatch]);
 
   const onLogOut = () => {
-    // @TODO: dispatch async action to sign out
     dispatch(asyncUnsetAuthUser());
     navigate('/login');
   };

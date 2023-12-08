@@ -1,5 +1,3 @@
-// @TODO : membuat action untuk menampilkan threadDetail berdasarkan threadId, dan membuat async untuk mendapatkan data dari server
-
 import api from '../../utils/api';
 
 const ActionType = {

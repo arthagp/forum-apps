@@ -1,4 +1,3 @@
-// berisi configStore
 import { configureStore } from '@reduxjs/toolkit';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import usersReducer from './users/reducer';
