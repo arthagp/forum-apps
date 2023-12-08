@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function BodyThread({ body }) {
   return (
@@ -7,5 +8,9 @@ function BodyThread({ body }) {
     </div>
   );
 }
+
+BodyThread.propTypes = {
+  body: PropTypes.string.isRequired,
+};
 
 export default BodyThread;

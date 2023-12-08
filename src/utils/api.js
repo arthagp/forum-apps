@@ -1,5 +1,5 @@
 const api = (() => {
-  const BASE_URL = 'https://forum-api.dicoding.dev/v1'
+  const BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
   async function fetchWithUrl(url, options = {}) {
     return fetch(url, {
@@ -66,9 +66,9 @@ const api = (() => {
   async function getOwnProfile() {
     const response = await fetchWithUrl(`${BASE_URL}/users/me`);
 
-    const responseJson = await response.json()
+    const responseJson = await response.json();
 
-    const { status, message } = responseJson
+    const { status, message } = responseJson;
 
     if (status !== 'success') {
       throw new Error(message);
@@ -87,12 +87,12 @@ const api = (() => {
     const { status, message } = responseJson;
 
     if (status !== 'success') {
-      throw new Error(message)
+      throw new Error(message);
     }
 
     const { data: { users } } = responseJson;
 
-    return users
+    return users;
   }
 
   async function allThreads() {
@@ -100,31 +100,31 @@ const api = (() => {
 
     const responseJson = await response.json();
 
-    const { status, message } = responseJson
+    const { status, message } = responseJson;
 
     if (status !== 'success') {
-      throw new Error(message)
+      throw new Error(message);
     }
 
     const { data: { threads } } = responseJson;
 
-    return threads
+    return threads;
   }
 
   async function threadDetail(threadId) {
-    const response = await fetch(`${BASE_URL}/threads/${threadId}`)
+    const response = await fetch(`${BASE_URL}/threads/${threadId}`);
 
     const responseJson = await response.json();
 
     const { status, message } = responseJson;
 
     if (status !== 'success') {
-      throw new Error(message)
+      throw new Error(message);
     }
 
-    const { data: { detailThread } } = responseJson
+    const { data: { detailThread } } = responseJson;
 
-    return detailThread
+    return detailThread;
   }
 
   async function createComment({ threadId, content }) {
@@ -135,20 +135,20 @@ const api = (() => {
       },
       body: JSON.stringify({
         content,
-      })
+      }),
     });
 
-    const responseJson = await response.json()
+    const responseJson = await response.json();
 
     const { status, message } = responseJson;
 
     if (status !== 'success') {
-      throw new Error(message)
+      throw new Error(message);
     }
 
     const { data: { comment } } = responseJson;
 
-    return comment
+    return comment;
   }
 
   async function createThread({ title, body, category }) {
@@ -160,37 +160,37 @@ const api = (() => {
       body: JSON.stringify({
         title,
         body,
-        category
-      })
-    })
+        category,
+      }),
+    });
 
-    const responseJson = await response.json()
+    const responseJson = await response.json();
 
     const { status, message } = responseJson;
 
     if (status !== 'success') {
-      throw new Error(message)
+      throw new Error(message);
     }
 
-    const { data: { thread } } = responseJson
+    const { data: { thread } } = responseJson;
 
-    return thread
+    return thread;
   }
 
   async function leaderBoards() {
-    const response = await fetch(`${BASE_URL}/leaderboards`)
+    const response = await fetch(`${BASE_URL}/leaderboards`);
 
-    const responseJson = await response.json()
+    const responseJson = await response.json();
 
     const { status, message } = responseJson;
 
     if (status !== 'success') {
-      throw new Error(message)
+      throw new Error(message);
     }
 
-    const { data: { leaderboards } } = responseJson
+    const { data: { leaderboards } } = responseJson;
 
-    return leaderboards
+    return leaderboards;
   }
 
   async function upVoteThread(threadId) {
@@ -199,19 +199,19 @@ const api = (() => {
       headers: {
         'Content-Type': 'application/json',
       },
-    })
+    });
 
-    const responseJson = await response.json()
+    const responseJson = await response.json();
 
     const { status, message } = responseJson;
 
     if (status !== 'success') {
-      throw new Error(message)
+      throw new Error(message);
     }
 
-    const { data: { vote } } = responseJson
+    const { data: { vote } } = responseJson;
 
-    return vote
+    return vote;
   }
 
   async function downVoteThread(threadId) {
@@ -220,19 +220,19 @@ const api = (() => {
       headers: {
         'Content-Type': 'application/json',
       },
-    })
+    });
 
-    const responseJson = await response.json()
+    const responseJson = await response.json();
 
     const { status, message } = responseJson;
 
     if (status !== 'success') {
-      throw new Error(message)
+      throw new Error(message);
     }
 
-    const { data: { vote } } = responseJson
+    const { data: { vote } } = responseJson;
 
-    return vote
+    return vote;
   }
 
   return {
@@ -248,11 +248,8 @@ const api = (() => {
     createThread,
     leaderBoards,
     upVoteThread,
-    downVoteThread
+    downVoteThread,
   };
 })();
 
 export default api;
-
-
-

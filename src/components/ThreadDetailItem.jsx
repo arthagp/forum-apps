@@ -1,12 +1,15 @@
 import React from 'react';
-import ThreadBodyDetail from './threadBodyDetail';
-import InputComment from './InputComment';
-import CommentList from './CommentList';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import InputComment from './InputComment';
+import CommentList from './CommentList';
+import ThreadBodyDetail from './threadBodyDetail';
 
-const ThreadDetailItem = ({ category, title, body, createdAt, upVotesBy, downVotesBy, owner, comments, comment }) => {
-  const { authUser } = useSelector((states) => states)
+function ThreadDetailItem({
+  category, title, body, createdAt, upVotesBy, downVotesBy, owner, comments, toComment,
+}) {
+  const { authUser } = useSelector((states) => states);
 
   return (
     <div className="threads">
@@ -14,12 +17,17 @@ const ThreadDetailItem = ({ category, title, body, createdAt, upVotesBy, downVot
       <p>Beri Komentar</p>
       {authUser == null ? (
         <p>
-          <Link to={'/login'}>Login</Link> untuk memberi komentar
+          <Link to="/login">Login</Link>
+          {' '}
+          untuk memberi komentar
         </p>
       ) : (
-        <InputComment comment={comment} />
+        <InputComment toComment={toComment} />
       )}
-      <p>Komentar {`(${comments.length || 0})`}</p>
+      <p>
+        Komentar
+        {`(${comments.length || 0})`}
+      </p>
       {comments.map((comment) => (
         <CommentList
           key={comment.id}
@@ -28,6 +36,23 @@ const ThreadDetailItem = ({ category, title, body, createdAt, upVotesBy, downVot
       ))}
     </div>
   );
+}
+
+const ownerShape = {
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
+ThreadDetailItem.propTypes = {
+  category: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  upVotesBy: PropTypes.arrayOf().isRequired,
+  downVotesBy: PropTypes.arrayOf().isRequired,
+  owner: PropTypes.shape(ownerShape).isRequired,
+  createdAt: PropTypes.string.isRequired,
+  comments: PropTypes.objectOf().isRequired,
+  toComment: PropTypes.func.isRequired,
 };
 
 export default ThreadDetailItem;

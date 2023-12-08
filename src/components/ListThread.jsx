@@ -1,16 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ThreadItem from './ThreadItem';
 
-function ListThread({ threads, like }) {
+function ListThread({ threads, like, unLike }) {
   return (
     <div className="list-threads">
-      {threads !== null ? (<h3 className='available'>Diskusi Tersedia</h3>) : (<h3 className='available'>Diskusi Tidak Tersedia</h3>)}
+      {threads !== null ? (<h3 className="available">Diskusi Tersedia</h3>) : (<h3 className="available">Diskusi Tidak Tersedia</h3>)}
       {threads.map((thread) => (
-        <ThreadItem key={thread.id} {...thread} like={like}/>
-      )
-      )}
+        <ThreadItem key={thread.id} {...thread} like={like} unLike={unLike} />
+      ))}
     </div>
   );
 }
+
+ListThread.propTypes = {
+  threads: PropTypes.arrayOf().isRequired,
+  like: PropTypes.func.isRequired,
+  unLike: PropTypes.func.isRequired,
+};
 
 export default ListThread;

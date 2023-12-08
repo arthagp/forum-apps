@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import useInput from '../hooks/useInput';
-import PropTypes from 'prop-types'
 
 function InputLogin({ login }) {
-  const [email, onEmailChange] = useInput('')
-  const [password, onPasswordChange] = useInput('')
+  const [email, onEmailChange] = useInput('');
+  const [password, onPasswordChange] = useInput('');
 
   return (
     <form className="login-input">
@@ -17,6 +17,6 @@ function InputLogin({ login }) {
 
 InputLogin.propTypes = {
   login: PropTypes.func.isRequired,
-}
+};
 
 export default InputLogin;

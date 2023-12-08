@@ -22,5 +22,10 @@
         "react/no-unescaped-entities": "off",
         "import/extensions": "off",
         "no-use-before-define": "off",
+        "react/no-danger": "off",
+        "react/jsx-props-no-spreading": "off",
+        "linebreak-style" : "off",
+        "import/no-unresolved": "off",
+        "no-alert": "off"
     }
 }

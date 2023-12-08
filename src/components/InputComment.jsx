@@ -1,35 +1,40 @@
-import React, { useState } from 'react';
-import useInput from '../hooks/useInput'
+import React from 'react';
+import PropTypes from 'prop-types';
+import useInput from '../hooks/useInput';
 
-const InputComment = ({ comment }) => {
-    const [content, onContentChange, setContent] = useInput('');
+function InputComment({ toComment }) {
+  const [content, onContentChange, setContent] = useInput('');
 
-    const toComment = () => {
-        if (content.trim()) {
-            comment(content);
-            setContent('');
-        }
-    };
+  const onComment = () => {
+    if (content.trim()) {
+      toComment(content);
+      setContent('');
+    }
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        toComment();
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onComment();
+  };
 
-    return (
-        <form className="container-input" onSubmit={handleSubmit}>
-            <textarea
-                type="text"
-                className="input__field"
-                rows="7"
-                value={content}
-                onChange={onContentChange}
-            />
-            <button type="button" onClick={toComment}>
-                Kirim
-            </button>
-        </form>
-    );
+  return (
+    <form className="container-input" onSubmit={handleSubmit}>
+      <textarea
+        type="text"
+        className="input__field"
+        rows="7"
+        value={content}
+        onChange={onContentChange}
+      />
+      <button type="button" onClick={onComment}>
+        Kirim
+      </button>
+    </form>
+  );
+}
+
+InputComment.propTypes = {
+  toComment: PropTypes.func.isRequired,
 };
 
 export default InputComment;

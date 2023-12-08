@@ -1,19 +1,17 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import InputLogin from '../components/InputLogin';
-import { useDispatch } from 'react-redux'
-import { asyncSetAuthUser } from '../states/authUser/action'
-
+import { asyncSetAuthUser } from '../states/authUser/action';
 
 function LoginPage() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onLogin = ({ email, password }) => {
-    dispatch(asyncSetAuthUser({ email, password }))
-    
-    navigate('/')
-  }
+    dispatch(asyncSetAuthUser({ email, password }));
+    navigate('/');
+  };
   return (
     <section className="login-page">
       <h1>Login Page</h1>

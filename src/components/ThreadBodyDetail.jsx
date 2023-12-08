@@ -1,12 +1,18 @@
 import React from 'react';
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 import { postedAt } from '../utils';
 
-const ThreadBodyDetail = ({ category, title, body, upVotesBy, downVotesBy, owner, createdAt }) => {
+function ThreadBodyDetail({
+  category, title, body, upVotesBy, downVotesBy, owner, createdAt,
+}) {
   return (
-    <div className='thread-item'>
+    <div className="thread-item">
       <header className="thread-item__header">
-        <span>#{category}</span>
+        <span>
+          #
+          {category}
+        </span>
         <h1>{title}</h1>
       </header>
       <div className="thread-item__body">
@@ -26,7 +32,7 @@ const ThreadBodyDetail = ({ category, title, body, upVotesBy, downVotesBy, owner
           </button>
         </div>
         <p>
-          <span><img className='avatar' src={owner.avatar} alt={owner} /></span>
+          <span><img className="avatar" src={owner.avatar} alt={owner} /></span>
           Dibuat oleh
           {' '}
           <strong>{owner.name}</strong>
@@ -36,5 +42,20 @@ const ThreadBodyDetail = ({ category, title, body, upVotesBy, downVotesBy, owner
     </div>
   );
 }
+
+const ownerShape = {
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
+ThreadBodyDetail.propTypes = {
+  category: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  upVotesBy: PropTypes.arrayOf().isRequired,
+  downVotesBy: PropTypes.arrayOf().isRequired,
+  owner: PropTypes.shape(ownerShape).isRequired,
+  createdAt: PropTypes.string.isRequired,
+};
 
 export default ThreadBodyDetail;

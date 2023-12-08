@@ -31,8 +31,7 @@ function asyncPreloadProcess() {
       // Penanganan kesalahan (fallback process) jika preload data gagal
       dispatch(setAuthUserActionCreator(null));
     } finally {
-      // Menghentikan indikator loading setelah proses preload selesai, 
-      // mengubah nilai isPreload menjadi false (awalnya true, diatur dalam reducer)
+      // Menghentikan indikator loading setelah proses preload selesai, mengubah nilai isPreload menjadi false (awalnya true, diatur dalam reducer)
       dispatch(setIsPreloadActionCreator(false));
 
       // Menyembunyikan indikator loading

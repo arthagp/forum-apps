@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function Navigation({ authUser, logOut }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const login = () => {
-    navigate('/login')
-  }
+    navigate('/login');
+  };
 
   return (
     <div className="navigation">
@@ -21,17 +21,24 @@ function Navigation({ authUser, logOut }) {
           <li><Link to="/leaderboards">Leader Board</Link></li>
         </ul>
         {authUser !== null ? (
-          <button className="btn-login" onClick={logOut}>
+          <button type="button" className="btn-login" onClick={logOut}>
             logout
-          </button>) :
-          (<button className="btn-login" onClick={login}>
-            login
-          </button>)
-        }
+          </button>
+        )
+          : (
+            <button type="button" className="btn-login" onClick={login}>
+              login
+            </button>
+          )}
 
       </nav>
     </div>
   );
 }
+
+Navigation.propTypes = {
+  authUser: PropTypes.objectOf().isRequired,
+  logOut: PropTypes.func.isRequired,
+};
 
 export default Navigation;

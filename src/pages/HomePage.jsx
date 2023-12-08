@@ -1,60 +1,60 @@
 import React, { useEffect } from 'react';
-import ListThread from '../components/ListThread';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import { IoIosAddCircle } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 import { asyncPopulateUsersAndThreads } from '../states/shared/action';
-import { IoIosAddCircle } from "react-icons/io";
-import { useNavigate } from 'react-router-dom'
+import ListThread from '../components/ListThread';
 import Category from '../components/Category';
-import { asyncLikeThread } from '../states/threads/action'
-import api from '../utils/api';
+import { asyncLikeThread, asyncUnLikeThread } from '../states/threads/action';
 
 function HomePage() {
   const {
     threads = [],
     users = [],
-    authUser = null
-  } = useSelector((states) => states)
+    authUser,
+  } = useSelector((states) => states);
 
-
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(asyncPopulateUsersAndThreads())
-  }, [dispatch])
+    dispatch(asyncPopulateUsersAndThreads());
+  }, [dispatch]);
 
   const linkAddThread = () => {
-    navigate('/add')
-  }
+    navigate('/add');
+  };
 
   const onLike = (id) => {
-    dispatch(asyncLikeThread(id))
-  }
+    dispatch(asyncLikeThread(id));
+  };
+
+  const onUnLike = (id) => {
+    dispatch(asyncUnLikeThread(id));
+  };
 
   const threadList = threads.map((thread) => ({
     ...thread,
     user: users.find((user) => user.id === thread.ownerId),
-    authUser: authUser.id
-  }))
+    authUser: authUser?.id,
+  }));
 
-  console.log(threadList, 'list')
-  // membuat agar jika category di klik maka terselect dan berubah warna menjadi dark blue untuk background dan color berubah white
   return (
     <section className="thread-container">
       <div className="threads">
         <header>
           <h2>Kategoru Popular</h2>
-          <div className='category-list'>
+          <div className="category-list">
             {
-              threadList.map(thread => (
+              threadList.map((thread) => (
                 <Category key={thread.id} {...thread} />
               ))
             }
           </div>
         </header>
-        <ListThread threads={threadList} like={onLike} />
+        <ListThread threads={threadList} like={onLike} unLike={onUnLike} />
       </div>
-      <button className='add-thread' onClick={linkAddThread}>
+      <button className="add-thread" onClick={linkAddThread} type="button">
         {authUser !== null ? (
           <IoIosAddCircle size={50} />
         ) : null}

@@ -1,11 +1,18 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Category = ({ category }) => {
-    return (
-        <button className='category'>
-            <p>#{category}</p>
-        </button>
-    )
+function Category({ category }) {
+  return (
+    <button className="category" type="button">
+      <p>
+        #
+        {category}
+      </p>
+    </button>
+  );
 }
 
-export default Category
+Category.propTypes = {
+  category: PropTypes.string.isRequired,
+};
+export default Category;

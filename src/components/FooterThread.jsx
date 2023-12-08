@@ -1,36 +1,48 @@
 import React from 'react';
-import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike } from 'react-icons/ai';
+import {
+  AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike,
+} from 'react-icons/ai';
 import { FaRegComments } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 import { postedAt } from '../utils';
 
-function FooterThread({ id, upVotesBy, downVotesBy, totalComments, createdAt, user, like, authUser }) {
-  // console.log(authUser, id)
-  const isThreadLike = upVotesBy.includes(authUser)
-  // console.log(like, 'likeee')
-
-  // id : merupakan threadId 
+function FooterThread({
+  id, upVotesBy, downVotesBy, totalComments, createdAt, user, like, unLike, authUser,
+}) {
+  const isThreadLike = upVotesBy.includes(authUser);
+  const isThreadUnLike = downVotesBy.includes(authUser);
+  // id : merupakan threadId
   const onLikeClick = (event) => {
     event.stopPropagation();
-    like(id)
-  }
-  // <AiFillLike /> <AiFillDislike />
+    like(id);
+  };
+
+  const onUnLikeClick = (event) => {
+    event.stopPropagation();
+    unLike(id);
+  };
+
   return (
     <footer className="thread-item__footer">
-      <div className='vote-buttons'>
+      <div className="vote-buttons">
         {
           like && (
-            <button type="button" className='vote-button' onClick={onLikeClick}>
+            <button type="button" className="vote-button" onClick={onLikeClick}>
               {isThreadLike ? (<AiFillLike />) : (<AiOutlineLike />)}
               {' '}
               <span>{upVotesBy.length}</span>
             </button>
           )
         }
-        <button type="button" className='vote-button'>
-          <AiOutlineDislike />
-          {' '}
-          <span>{downVotesBy.length}</span>
-        </button>
+        {
+          unLike && (
+            <button type="button" className="vote-button" onClick={onUnLikeClick}>
+              {isThreadUnLike ? (<AiFillDislike />) : (<AiOutlineDislike />)}
+              {' '}
+              <span>{downVotesBy.length}</span>
+            </button>
+          )
+        }
       </div>
       <p>
         <FaRegComments />
@@ -48,5 +60,21 @@ function FooterThread({ id, upVotesBy, downVotesBy, totalComments, createdAt, us
     </footer>
   );
 }
+
+const userShape = {
+  name: PropTypes.string.isRequired,
+};
+
+FooterThread.propTypes = {
+  id: PropTypes.string.isRequired,
+  user: PropTypes.shape(userShape).isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  totalComments: PropTypes.number.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  like: PropTypes.func.isRequired,
+  unLike: PropTypes.func.isRequired,
+  authUser: PropTypes.string.isRequired,
+};
 
 export default FooterThread;

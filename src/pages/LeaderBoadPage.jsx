@@ -1,34 +1,33 @@
 import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import LeaderBoardsList from '../components/LeaderBoardsList';
-import { useSelector, useDispatch } from 'react-redux'
-import { asyncLeaderBoards } from '../states/leaderBoards/action'
+import { asyncLeaderBoards } from '../states/leaderBoards/action';
 
 function LeaderBoadPage() {
   const {
-    leaderBoards = []
-  } = useSelector((states) => states)
+    leaderBoards = [],
+  } = useSelector((states) => states);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(asyncLeaderBoards())
-  }, [dispatch])
+    dispatch(asyncLeaderBoards());
+  }, [dispatch]);
 
   if (!leaderBoards) {
-    return null
+    return null;
   }
-
   return (
     <section className="leaderBoard-container">
       <div className="leaderBoards">
         <h2>Klasmen Pengguna Aktif</h2>
-        <div className='leaderBoard-list'>
+        <div className="leaderBoard-list">
           <header>
             <p>Pengguna</p>
             <p>Skor</p>
           </header>
-          {leaderBoards.map((leaderBoard, index) => (
-            <LeaderBoardsList key={index} {...leaderBoard} />
+          {leaderBoards.map((leaderBoard) => (
+            <LeaderBoardsList key={leaderBoard.user.id} {...leaderBoard} />
           ))}
         </div>
       </div>
